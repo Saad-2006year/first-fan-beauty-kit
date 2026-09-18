@@ -1,0 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { PageIntro } from "@/components/product-grid";
+import { products } from "@/lib/store";
+export const Route = createFileRoute("/gallery")({ head: () => ({ meta: [{ title: "Glow Gallery — FIRST FAN" }, { name: "description", content: "Explore FIRST FAN skincare textures, products and rituals." }, { property: "og:title", content: "Glow Gallery — FIRST FAN" }, { property: "og:description", content: "A playful look at the FIRST FAN collection." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }), component: Gallery });
+function Gallery() { return <main className="mx-auto max-w-6xl px-4 py-10 lg:px-8"><PageIntro eyebrow="The fan edit" title="Shelfie-worthy glow" text="A closer look at the textures, tones and rituals we love." /><div className="grid grid-cols-2 gap-3 md:grid-cols-4">{products.map((p, i) => <img key={p.id} src={p.image} alt={`${p.name} editorial`} width={816} height={816} loading="lazy" className={`w-full rounded-3xl object-cover ${i === 0 ? "col-span-2 row-span-2 aspect-square" : "aspect-square"}`} />)}</div></main>; }

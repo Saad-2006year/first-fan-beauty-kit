@@ -1,0 +1,7 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { PageIntro, ProductGrid } from "@/components/product-grid";
+
+export const Route = createFileRoute("/shop")({ head: () => ({ meta: [{ title: "Shop K-Beauty — FIRST FAN" }, { name: "description", content: "Browse curated Korean skincare and wellness essentials." }, { property: "og:title", content: "Shop K-Beauty — FIRST FAN" }, { property: "og:description", content: "Serums, cleansers, masks and wellness favourites." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }), component: Shop });
+function Shop() { const [category, setCategory] = useState("All"); const categories = ["All", "Serums", "Cleansers", "Wellness", "Masks"]; return <main className="mx-auto max-w-6xl px-4 py-10 lg:px-8"><PageIntro eyebrow="The glow shop" title="Find your new ritual" text="Easy-to-love formulas selected for hydration, calm and everyday glow." /><div className="mb-6 flex gap-2 overflow-x-auto pb-2">{categories.map((item) => <Button key={item} variant={category === item ? "default" : "outline"} className="shrink-0 rounded-full" onClick={() => setCategory(item)}>{item}</Button>)}</div><ProductGrid category={category} /></main>; }
