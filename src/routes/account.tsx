@@ -76,14 +76,14 @@ function Account() {
       <div className="rounded-[2rem] border-2 border-border bg-card p-6">
         <p className="text-xs font-extrabold uppercase text-accent">Welcome, fan</p>
         <h1 className="mt-2 font-display text-3xl font-bold">{mode === "signin" ? "Sign in" : "Create account"}</h1>
-        <form onSubmit={submit} className="mt-6 grid gap-3">
+        <Button variant="outline" className="mt-6 h-12 w-full rounded-xl font-bold" onClick={signInWithGoogle}>Continue with Google — 1 tap</Button>
+        <div className="my-5 flex items-center gap-3 text-xs text-muted-foreground"><span className="h-px flex-1 bg-border" />or with email<span className="h-px flex-1 bg-border" /></div>
+        <form onSubmit={submit} className="grid gap-3">
           {mode === "signup" && <Input name="name" required placeholder="Full name" className="h-12 rounded-xl" />}
           <Input name="email" required type="email" autoComplete="email" placeholder="Email" className="h-12 rounded-xl" />
           <Input name="password" required type="password" minLength={6} autoComplete={mode === "signin" ? "current-password" : "new-password"} placeholder="Password (min 6 characters)" className="h-12 rounded-xl" />
           <Button disabled={busy} type="submit" className="h-12 rounded-xl">{busy ? "Please wait…" : mode === "signin" ? "Sign in" : "Sign up"}</Button>
         </form>
-        <div className="my-5 flex items-center gap-3 text-xs text-muted-foreground"><span className="h-px flex-1 bg-border" />or<span className="h-px flex-1 bg-border" /></div>
-        <Button variant="outline" className="h-12 w-full rounded-xl" onClick={signInWithGoogle}>Continue with Google</Button>
         {message && <p className="mt-4 text-center text-sm font-bold text-primary">{message}</p>}
         <button type="button" className="mt-5 w-full text-sm font-bold text-primary" onClick={() => { setMode(mode === "signin" ? "signup" : "signin"); setMessage(""); }}>{mode === "signin" ? "New here? Create account" : "Already a fan? Sign in"}</button>
       </div>
