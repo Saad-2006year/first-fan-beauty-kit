@@ -3,10 +3,11 @@ import { Heart, Menu, ShoppingBag, Sparkles, UserRound, X } from "lucide-react";
 import { useState, type ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/lib/store";
+import logoAsset from "@/assets/first-fan-logo.jpeg.asset.json";
 
 export function Brand() {
   return <Link to="/" className="flex items-center gap-2" aria-label="First Fan home">
-    <span className="grid size-10 place-items-center rounded-2xl bg-primary font-display text-xl font-bold text-primary-foreground">F</span>
+    <img src={logoAsset.url} alt="" className="size-10 rounded-2xl object-cover" width={40} height={40} />
     <span className="leading-none"><strong className="block font-display text-lg">FIRST FAN</strong><span className="mt-1 block text-[10px] font-extrabold uppercase text-accent">K-Beauty</span></span>
   </Link>;
 }
