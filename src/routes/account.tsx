@@ -33,7 +33,12 @@ function Account() {
       : await supabase.auth.signUp({ email, password, options: { emailRedirectTo: window.location.origin, data: { full_name: String(form.get("name") ?? "") } } });
     setBusy(false);
     if (result.error) {
-      setMessage(result.error.message);
+      const raw = result.error.message.toLowerCase();
+      setMessage(
+        raw.includes("invalid login") ? "Email or password doesn't match — try again or create an account." :
+        raw.includes("already registered") || raw.includes("already been registered") ? "This email already has an account — switch to Sign in." :
+        result.error.message
+      );
       return;
     }
     if (!result.data.session) {
